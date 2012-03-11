@@ -8,6 +8,7 @@ import org.codegist.crest.io.http.HttpClientHttpChannelFactory;
 import org.codegist.crest.serializer.simplexml.SimpleXmlDeserializer;
 
 import fastball.view.Inning;
+import fastball.view.Player;
 import fastball.view.miniscoreboard.Game;
 import fastball.view.scoreboard.ScoreBoard;
 
@@ -79,6 +80,24 @@ public class GameDayBean {
     	String dayStr = (day < 10) ? "0"+day : ""+day;
         Game game = service.getMiniScoreboardGame(yearStr,monthStr,dayStr,gameId);        
         return game;
+    }
+    
+    public Player getPitcher(int year, int month, int day, String gameId,String playerId) {
+    	GameDayService service = client.build(GameDayService.class);
+    	String yearStr = ""+year;
+    	String monthStr = (month < 10) ? "0"+month : ""+month;
+    	String dayStr = (day < 10) ? "0"+day : ""+day;
+        Player player = service.getPitcher(yearStr,monthStr,dayStr,gameId,playerId);        
+        return player;
+    }
+    
+    public fastball.view.Game getGamePlayers(int year, int month, int day, String gameId) {
+    	GameDayService service = client.build(GameDayService.class);
+    	String yearStr = ""+year;
+    	String monthStr = (month < 10) ? "0"+month : ""+month;
+    	String dayStr = (day < 10) ? "0"+day : ""+day;
+    	fastball.view.Game game = service.getGamePlayers(yearStr,monthStr,dayStr,gameId);
+    	return game;
     }
 
 }

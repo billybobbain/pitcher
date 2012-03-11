@@ -26,6 +26,9 @@ public class ScoreBoard {
     @ElementList(required=false,inline=true,entry="sg_game")
     private List<SgGame> sgGame;
 
+    @ElementList(required=false,inline=true,entry="ig_game")
+    private List<IgGame> igGame;
+
     public List<SgGame> getSgGame() {
         return sgGame;
     }
@@ -58,6 +61,14 @@ public class ScoreBoard {
     public void setLastModified(String lastModified) {
         this.lastModified = lastModified;
     }
+
+	public List<IgGame> getIgGame() {
+		return igGame;
+	}
+
+	public void setIgGame(List<IgGame> igGame) {
+		this.igGame = igGame;
+	}
     
     
          

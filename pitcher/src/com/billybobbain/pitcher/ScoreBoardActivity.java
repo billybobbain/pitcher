@@ -11,6 +11,7 @@ import com.googlecode.chartdroid.core.IntentConstants;
 import fastball.GameDayBean;
 import fastball.view.scoreboard.Game;
 import fastball.view.scoreboard.GoGame;
+import fastball.view.scoreboard.IgGame;
 import fastball.view.scoreboard.ScoreBoard;
 import fastball.view.scoreboard.SgGame;
 import android.app.ListActivity;
@@ -176,13 +177,14 @@ public class ScoreBoardActivity extends ListActivity {
  			StringBuilder b = new StringBuilder();
  			List<GoGame> goGame = scoreBoard.getGoGame();
  			List<SgGame> sgGame = scoreBoard.getSgGame();
+ 			List<IgGame> igGame = scoreBoard.getIgGame();
  			if(goGame != null) {
  				for(GoGame gg : goGame) {
  					Game g = gg.getGame(); 					
  					String[] gameIdParts = g.getId().split("_");
  					String away = gameIdParts[3].replace("mlb", "").toUpperCase();
  					String home = gameIdParts[4].replace("mlb", "").toUpperCase();
- 					games.add(g);
+ 					games.add(g); 					
  					game.add(away + " at " +home + " at " + g.getStartTime() );
  				} 				
  			}
@@ -195,7 +197,36 @@ public class ScoreBoardActivity extends ListActivity {
  					games.add(g);
  					game.add(away + " at " +home + " at " + g.getStartTime() );
  				}
+ 			} 			if(sgGame != null) {
+ 				for(SgGame sg : sgGame) {
+ 					Game g = sg.getGame();
+ 					String[] gameIdParts = g.getId().split("_");
+ 					String away = gameIdParts[3].replace("mlb", "").toUpperCase();
+ 					String home = gameIdParts[4].replace("mlb", "").toUpperCase();
+ 					games.add(g);
+ 					game.add(away + " at " +home + " at " + g.getStartTime() );
+ 				}
  			}
+ 			if(igGame != null) {
+ 				for(IgGame ig : igGame) {
+ 					Game g = ig.getGame();
+ 					String[] gameIdParts = g.getId().split("_");
+ 					String away = gameIdParts[3].replace("mlb", "").toUpperCase();
+ 					String home = gameIdParts[4].replace("mlb", "").toUpperCase();
+ 					games.add(g);
+ 					game.add(away + " at " +home + " at " + g.getStartTime() );
+ 				}
+ 			} 			if(sgGame != null) {
+ 				for(IgGame ig: igGame) {
+ 					Game g = ig.getGame();
+ 					String[] gameIdParts = g.getId().split("_");
+ 					String away = gameIdParts[3].replace("mlb", "").toUpperCase();
+ 					String home = gameIdParts[4].replace("mlb", "").toUpperCase();
+ 					games.add(g);
+ 					game.add(away + " at " +home + " at " + g.getStartTime() );
+ 				}
+ 			}
+ 			
  			setListAdapter(new ArrayAdapter<String>(this, R.layout.scoreboard_item, game));
 
  		}

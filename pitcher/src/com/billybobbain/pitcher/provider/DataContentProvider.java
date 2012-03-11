@@ -89,21 +89,23 @@ public class DataContentProvider extends ContentProvider {
 //					row_index++;
 //				}
 				
-				Game game = gdb.getMiniScoreboardGame(year, month, day, gameId);
-				int i=1;
-				LineScore lineScore = game.getLineScore();
-				if(lineScore != null && lineScore.getInning().size() > 0)
-				for (fastball.view.miniscoreboard.Inning inning : lineScore.getInning()) {
-					if(inning.getAway() != null && !inning.getAway().equals("X")) {
-						c.newRow().add( row_index ).add( labels[0]+"-"+i );
+				if(true) {
+					Game game = gdb.getMiniScoreboardGame(year, month, day, gameId);
+					int i=1;
+					LineScore lineScore = game.getLineScore();
+					if(lineScore != null && lineScore.getInning().size() > 0)
+					for (fastball.view.miniscoreboard.Inning inning : lineScore.getInning()) {
+						if(inning.getAway() != null && !inning.getAway().equals("X")) {
+							c.newRow().add( row_index ).add( labels[0]+"-"+i );
+							row_index++;
+						}
+						if(inning.getHome() != null && !inning.getHome().equals("X")) {
+						c.newRow().add( row_index ).add( labels[1]+"-"+i );
 						row_index++;
+						}
+						i++;
 					}
-					if(inning.getHome() != null && !inning.getHome().equals("X")) {
-					c.newRow().add( row_index ).add( labels[1]+"-"+i );
-					row_index++;
-					}
-					i++;
-				}
+				} 
 
 				return c;
 
