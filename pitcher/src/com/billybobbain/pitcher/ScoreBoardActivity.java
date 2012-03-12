@@ -216,7 +216,8 @@ public class ScoreBoardActivity extends ListActivity {
  					games.add(g);
  					game.add(away + " at " +home + " at " + g.getStartTime() );
  				}
- 			} 			if(sgGame != null) {
+ 			} 			
+ 			if(igGame != null) {
  				for(IgGame ig: igGame) {
  					Game g = ig.getGame();
  					String[] gameIdParts = g.getId().split("_");
